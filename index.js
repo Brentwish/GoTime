@@ -1,5 +1,5 @@
 var express = require("express");
-var port = 3700;
+var port = 8888;
  
 var app = express();
 app.set('views', __dirname + '/tpl');
@@ -13,7 +13,7 @@ app.get("/", function(req, res){
  
 var io = require('socket.io').listen(app.listen(port));
 io.sockets.on('connection', function (socket) {
-  socket.emit('message', { message: 'welcome to the chat' });
+  socket.emit('message', { name: 'Console', message: 'Welcome to the chat' });
   socket.on('send', function (data) {
     io.sockets.emit('message', data);
   });
